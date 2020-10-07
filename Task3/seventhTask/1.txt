@@ -1,0 +1,33 @@
+{
+    "stud1": {
+        "name": "George",
+        "age": 20,
+        "group": {
+            "group": 55,
+            "fac": {
+                "fac": 7
+            }
+        }
+    },
+    "stud2": {
+        "name": "Danya",
+        "age": 19,
+        "group": {
+            "group1": 54,
+            "fac": {
+                "fac1": "ИУ",
+                "kaf": {
+                    "kaf1": 7
+                }
+            }
+        }
+    },
+    "stud3": {
+        "name": "Denis",
+        "age": 20
+    },
+    "stud4": {
+        "name": "Sanya",
+        "age": 20
+    }
+}
