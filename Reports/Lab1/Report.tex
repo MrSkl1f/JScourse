@@ -1,0 +1,940 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel} 
+\usepackage{fontspec} 
+\defaultfontfeatures{Ligatures={TeX},Renderer=Basic} 
+\setmainfont[Ligatures={TeX,Historic}]{Times New Roman}
+\usepackage[14pt]{extsizes}
+\usepackage[left=2cm, right=2cm, top=1cm, bottom=2.5cm]{geometry}
+\usepackage{listings}
+\usepackage{titlesec, blindtext, color} % подключаем нужные пакеты
+\usepackage{setspace} % полуторный интервал\\
+\definecolor{gray75}{gray}{0.75} % определяем цвет
+\newcommand{\hsp}{\hspace{20pt}} % длина линии в 20pt
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}\hsp}{0pt}{\Huge\bfseries}
+\usepackage{graphicx}
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JavaScript}{
+	keywords={typeof, let, new, true, false, catch, function, for, return, null, catch, switch, var, if, in, while, do, else, case, break},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywords={class, export, boolean, throw, implements, import, this},
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=false,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{purple}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	morestring=[b]',
+	morestring=[b]"
+}
+
+\lstset{
+	language=JavaScript,
+	backgroundcolor=\color{lightgray},
+	extendedchars=true,
+	basicstyle=\footnotesize\ttfamily,
+	showstringspaces=false,
+	showspaces=false,
+	numbers=left,
+	numberstyle=\footnotesize,
+	numbersep=9pt,
+	tabsize=2,
+	frame=single,
+	breaklines=true,
+	showtabs=false,
+	captionpos=t
+}
+\begin{document}
+	\begin{titlepage}
+		\begin{table}[ht]
+			\centering
+			\begin{tabular}{|c|p{420pt}|} 
+				\hline
+				\begin{tabular}[c]{@{}c@{}} \includegraphics[scale=0.37]{EmblemBMSTU} \\\end{tabular} &
+				\footnotesize\begin{tabular}[c]{@{}c@{}}\textbf{Министерство~науки~и~высшего~образования~Российской~Федерации}\\\textbf{Федеральное~государственное~бюджетное~образовательное~учреждение}\\\textbf{~высшего~образования}\\\textbf{«Московский~государственный~технический~университет}\\\textbf{имени~Н.Э.~Баумана}\\\textbf{(национальный~исследовательский~университет)»}\\\textbf{(МГТУ~им.~Н.Э.~Баумана)}\\\end{tabular}  \\
+				\hline
+			\end{tabular}
+		\end{table}
+		\noindent\rule{\textwidth}{4pt}
+		\noindent\rule[14pt]{\textwidth}{1pt}
+		\hfill 
+		\noindent
+		\makebox{ФАКУЛЬТЕТ~}%
+		\makebox[\textwidth][l]{\underline{~~~~«Информатика и системы управления»~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}}%
+		\\
+		\noindent
+		\makebox{КАФЕДРА~}%
+		\makebox[\textwidth][l]{\underline{~~~~~~~«Программное обеспечение ЭВМ и информационные технологии»~~~~~~~~}}%
+		\\
+		
+		
+		\begin{center}
+			\vspace{3cm}
+			{\bf\huge Отчёт\par}
+			{\bf\Large по лабораторной работе № 1\par}
+			\vspace{0.5cm}
+		\end{center}
+		
+		
+		\noindent
+		\makebox{\large{\bf Название:}~~~}
+		\makebox[\textwidth][l]{\large\underline{~Основные элементы синтаксиса языка JavaScript~}}\\
+		
+		\noindent
+		\makebox{\large{\bf Дисциплина:}~~~}
+		\makebox[\textwidth][l]{\large\underline{~Архитектура ЭВМ~}}\\
+		
+		\vspace{1.5cm}
+		\noindent
+		\begin{tabular}{l c c c c c}
+			Студент      & ~ИУ7-55Б~               & \hspace{3.5cm} & \hspace{3.5cm}                 & &  Д.О. Склифасовский \\\cline{2-2}\cline{4-4} \cline{6-6} 
+			\hspace{3cm} & {\footnotesize(Группа)} &                & {\footnotesize(Подпись, дата)} & & {\footnotesize(И.О. Фамилия)}
+		\end{tabular}
+		
+		\vspace{1cm}
+		
+		\noindent
+		\begin{tabular}{l c c c c}
+			Преподователь & \hspace{6cm}   & \hspace{3.5cm}                 & & ~~~~~~ А.Ю. Попов ~~~~~~\\\cline{3-3} \cline{5-5} 
+			\hspace{3cm}  &                & {\footnotesize(Подпись, дата)} & & {\footnotesize(И.О. Фамилия)}
+		\end{tabular}
+		
+		\begin{center}	
+			\vfill
+			\large \textit {Москва, 2020}
+		\end{center}
+		
+		\thispagestyle {empty}
+		\pagebreak
+	\end{titlepage}
+	\restoregeometry
+	
+	\onehalfspacing
+	\tableofcontents
+	
+	\newpage
+	\chapter*{Введение}
+	\addcontentsline{toc}{chapter}{Введение}
+	Цель работы: познакомиться с языком программирования JavaScript. Изучить основы ООП.\par
+	\noindent В ходе лабораторной работы предстоит:
+	\begin{itemize}
+		\item Выполнить 2 таска, в каждом из которых по 3 задания.
+	\end{itemize}
+	
+	\chapter{Task 1}
+	\section{Задание 1}
+	\noindent Создать хранилище в оперативной памяти для хранения информации о детях.\par
+	\noindent Необходимо хранить информацию о ребенке: фамилия и возраст.\par
+	\noindent Необходимо обеспечить уникальность фамилий детей.\par
+	\noindent Реализовать функции:
+	\begin{itemize}
+		\item CREATE READ UPDATE DELETE для детей в хранилище
+		\item Получение среднего возраста детей
+		\item Получение информации о самом старшем ребенке
+		\item Получение информации о детях, возраст которых входит в заданный отрезок
+		\item Получение информации о детях, фамилия которых начинается с заданной буквы
+		\item Получение информации о детях, фамилия которых длиннее заданного количества символов
+		\item Получение информации о детях, фамилия которых начинается с гласной буквы
+	\end{itemize}
+	\noindent\textbf{Решение задания 1}
+	\begin{lstlisting}[label=Task1.1,caption=Файл index.js]
+		"use strict";
+		
+		function checkData(Kids, newObj){
+			for (let i = 0; i < Kids.length; i++){
+				if (Kids[i] === newObj){
+					return 0;
+				}
+			}
+			return 1;
+		}
+		
+		function CREATE (Kids, newKid){
+			if (!checkData(Kids, newKid)) {
+				console.log("This child is already in the store.");
+			}       
+			else {
+				Kids.push(newKid);
+			}
+		}
+		
+		function READ (Kids, name){
+			let checkRes = 0;
+			for (let i = 0; i < Kids.length; i++){
+				if (Kids[i].surname === name){
+					console.log("Age", name, ":", Kids[i].age);
+					checkRes = 1;
+					break;
+				}
+			}
+			if (!checkRes){
+				console.log("This child was not found.");
+			}
+		}
+		
+		function UPDATE(Kids, name, age){
+			let checkRes = 0;
+			for (let i = 0; i < Kids.length; i++){
+				if (Kids[i].surname === name){
+					Kids[i].age = age;
+					checkRes = 1;
+					break;
+				}
+			}
+			if (!checkRes){
+				console.log("This child was not found.");
+			}
+		}
+		
+		function DELETE(Kids, name){
+			let checkRes = 0;
+			let index = -1;
+			for (let i = 0; i < Kids.length; i++){
+				if (Kids[i].surname == name){
+					checkRes = 1;
+					index = i;
+					break;
+				}
+			}
+			if (checkRes){
+				Kids.splice(index, 1);
+			}
+			else{
+				console.log("This child was not found.");
+			}
+		}
+		
+		function getAverageAge(Kids){
+			let sum = 0;
+			for (let i = 0; i < Kids.length; i++){
+				sum += Kids[i].age;
+			}
+			return sum / Kids.length;
+		}
+		
+		function getInfoOnOldestKid(Kids){
+			let maxAge = 0,
+			index = 0;
+			for (let i = 0; i < Kids.length; i++){
+				if (maxAge < Kids[i].age){
+					maxAge = Kids[i].age;
+					index = i;
+				}
+			}
+			console.log("Oldest child", Kids[index].surname, ", age :", Kids[index].age);
+		}
+		
+		function getInfoOnSegment(Kids, indexFrom, indexTo){
+			for (let i = indexFrom; i <= indexTo; i++){
+				console.log("Name:", Kids[i].surname, ", age:", Kids[i].age);
+			}
+		}
+		
+		function getInfoByFirstLetter(Kids, letter){
+			let checkRes = 0;
+			for (let i = 0; i < Kids.length; i++){
+				if (Kids[i].surname[0] === letter){
+					checkRes = 1;
+					console.log("Surname:", Kids[i].surname, ", age:", Kids[i].age);
+				}
+			}
+			if (!checkRes){
+				console.log("No one child was found.");
+			}
+		}
+		
+		function getInfoOnCountOfLetters(Kids, count){
+			let checkRes = 0;
+			for (let i = 0; i < Kids.length; i++){
+				if (Kids[i].surname.length > count){
+					checkRes = 1;
+					console.log("Surname:", Kids[i].surname, ", Age:", Kids[i].age);
+				}
+			}
+			if (!checkRes){
+				console.log("No one child was found.");
+			}
+		}
+		
+		function checkInLine(first, second){
+			for (let i = 0; i < second.length; i++){
+				if (first === second[i]){
+					return 1;
+				}
+			}
+			return 0;
+		}
+		
+		function getInfoByVowel(Kids){
+			let vowels = "AEIOU"
+			let checkRes = 0;
+			for (let i = 0; i < Kids.length; i++){
+				if (checkInLine(Kids[i].surname[0], vowels)){
+					checkRes = 1;
+					console.log("Surname:", Kids[i].surname, ", Age:", Kids[i].age);
+				}
+			}
+			if (!checkRes){
+				console.log(""No one child was found."");
+			}
+		}
+		
+		let Kids = [];
+		let frstObject = {"surname" : "Naydenishev", "age" : 20};
+		let scndObject = {"surname" : "Syslikov", "age" : 19};
+		let thrdObject = {"surname" : "Sklifasovsky", "age" : 20};
+		let frthObject = {"surname" : "Orlov", "age" : 15};
+		CREATE(Kids, frstObject);
+		CREATE(Kids, scndObject);
+		CREATE(Kids, thrdObject);
+		CREATE(Kids, frthObject);
+		READ(Kids, "Orlov");
+		//READ(Kids, "Daniil");
+		UPDATE(Kids, "Orlov", 16);
+		READ(Kids, "Orlov");
+		DELETE(Kids, "Orlov");
+		//console.log(Kids);
+		getInfoOnOldestKid(Kids);
+		getInfoOnSegment(Kids, 1, 2);
+		getInfoByFirstLetter(Kids, "S");
+		getInfoOnCountOfLetters(Kids, 8);
+		getInfoByVowel(Kids);
+	\end{lstlisting}
+	
+	\newpage
+	\section{Задание 2}
+	\noindent Создать хранилище в оперативной памяти для хранения информации о студентах.
+	\noindent Необходимо хранить информацию о студенте: название группы, номер студенческого билета, оценки по программированию.
+	\noindent Необходимо обеспечить уникальность номеров студенческих билетов.
+	\noindent Реализовать функции:
+	\begin{itemize}
+		\item CREATE READ UPDATE DELETE для студентов в хранилище
+		\item Получение средней оценки заданного студента
+		\item Получение информации о студентах в заданной группе
+		\item Получение студента, у которого наибольшее количество оценок в заданной группе
+		\item Получение студента, у которого нет оценок
+	\end{itemize}
+	
+	\noindent\textbf{Решение задания 2}
+	\begin{lstlisting}[label=Task1.2,caption=Файл index.js]
+		"use strict";
+		const StudentsHolder = require("./StudentsHolder");
+		let Students = new StudentsHolder();
+		let frstStud = {"group" : 55, "number" : 18491, "marks" : [4, 4, 5]};
+		let scndStud = {"group" : 55, "number" : 18480, "marks" : [2, 3, 5]};
+		let thrdStud = {"group" : 53, "number" : 18301, "marks" : [2, 3, 3, 4]};
+		let frthStud = {"group" : 52, "number" : 18405, "marks" : [4, 4, 4]};
+		let fifthStud = {"group" : 52, "number" : 18333, "marks" : [5, 5, 5]};
+		let sixthStud = {"group" : 52, "number" : 18133, "marks" : []};
+		Students.CREATE(frstStud);
+		Students.CREATE(scndStud);
+		Students.CREATE(thrdStud);
+		Students.CREATE(frthStud);
+		Students.CREATE(fifthStud);
+		Students.CREATE(sixthStud);
+		Students.READ(18491);
+		Students.READ(18480);
+		Students.READ(18301);
+		Students.READ(18405);
+		Students.READ(18333);
+		console.log("\n");
+		Students.UPDATE(18491, 56, [5, 2, 4]);
+		Students.READ(18491);
+		console.log("\n");
+		Students.DELETE(18480);
+		console.log(Students.Students);
+		console.log("\n");
+		Students.getAverageMarks(18491);
+		console.log("\n");
+		Students.getInfoByGroup(52);
+		console.log("\n");
+		Students.getInfoByMaxMarks();
+		console.log("\n");
+		Students.getInfoByNoMarks();	
+	\end{lstlisting}
+	\begin{lstlisting}[label=Task1.2,caption=Файл StudentsHolder.js]
+		module.exports = class StudentsHolder {
+			constructor () {
+				this.Students = [];
+			}
+			getNeedStudent(needNumber) {
+				let index = -1;
+				for (let i = 0; i < this.Students.length; i++) {
+					if (this.Students[i].number === needNumber) {
+						index = i;
+						break;
+					}
+				}
+				return index;
+			}
+			
+			checkData(newObj) {
+				for (let i = 0; i < this.Students.length; i++) {
+					if (this.Students[i].number === newObj.number) {
+						return 0;
+					}
+				}
+				return 1;
+			}
+			
+			CREATE(newStudent) {
+				if (!this.checkData(newStudent)) {
+					console.log("This student is already present in the repository.");
+				}       
+				else {
+					this.Students.push(newStudent);
+				}
+			}
+		
+			READ(needStudent) {
+				let index = this.getNeedStudent(needStudent);
+				if (index === -1) {
+					console.log("This student was not found.");
+				}
+				else {
+					console.log("Group:", this.Students[index].group, "Number:", this.Students[index].number, "Marks:", this.Students[index].marks);
+				}
+			}
+			
+			UPDATE(needNumber, newGroup, newMarks) {
+				let index = this.getNeedStudent(needNumber);
+				if (index === -1) {
+					console.log("This student was not found.");
+				}
+				else {
+					this.Students[index].group = newGroup;
+					this.Students[index].marks = newMarks;
+				}
+			}
+			
+			DELETE(needNumber) {
+				let index = this.getNeedStudent(needNumber);
+				if (index === -1) {
+					console.log("This student was not found.");
+				}
+				else {
+					this.Students.splice(index, 1);
+				}
+			}
+			
+			sum(arr) {
+				let res = 0;
+				for (let i = 0; i < arr.length; i++) {
+					res += arr[i];
+				}
+				return res;
+			}
+			
+			getAverageMarks(needNumber) {
+				let index = this.getNeedStudent(needNumber);
+				if (index === -1) {
+					console.log("This student was not found.");
+				}
+				else {
+					let sum = this.sum(this.Students[index].marks);
+					if (this.Students[index].marks.length != 0) {
+						console.log(sum / this.Students[index].marks.length);
+					}
+					else {
+						console.log("This student has no grades.");
+					}
+				}
+			}
+			
+			getInfoByGroup(needGroup) {
+				for (let i = 0; i < this.Students.length; i++) {
+					if (this.Students[i].group === needGroup) {
+						this.READ(this.Students[i].number);
+					}
+				}
+			}
+			
+			getInfoByMaxMarks() {
+				let index = -1;
+				let maxMarks = 0;
+				for (let i = 0; i < this.Students.length; i++) {
+					if (maxMarks < this.Students[i].marks.length) {
+						maxMarks = this.Students[i].marks.length;
+						index = i;
+					} 
+				}
+				if (index != -1) {
+					this.READ(this.Students[index].number);
+				}
+				else {
+					console.log("The required student was not found");
+				}
+			}
+			
+			getInfoByNoMarks() {
+				for (let i = 0; i < this.Students.length; i++) {
+					if (this.Students[i].marks.length === 0) {
+						this.READ(this.Students[i].number);
+					}
+				}
+			}
+		} 
+	\end{lstlisting}
+	
+	\newpage
+	\section{Задание 3}
+	\noindent Создать хранилище в оперативной памяти для хранения точек.\par
+	\noindent Неоходимо хранить информацию о точке: имя точки, позиция X и позиция Y.\par
+	\noindent Необходимо обеспечить уникальность имен точек.\par
+	\noindent Реализовать функции:\par
+	\begin{itemize}
+		\item CREATE READ UPDATE DELETE для точек в хранилище
+		\item Получение двух точек, между которыми наибольшее расстояние
+		\item Получение точек, находящихся от заданной точки на расстоянии, не превышающем заданную константу
+		\item Получение точек, находящихся выше / ниже / правее / левее заданной оси координат
+		\item Получение точек, входящих внутрь заданной прямоугольной зоны
+	\end{itemize}
+	\textbf{Решение задания 3}
+	\begin{lstlisting}[label=Task1.3,caption=Файл index.js]
+		"use strict";
+		const Point = require("./Point");
+		const PointHandler = require("./PointHandler");
+		const Rectangle = require("./Rectangle");
+		let frstPoint = new Point("A", 5, 5);
+		let scndPoint = new Point("B", 2, 2);
+		let thrdPoint = new Point("C", -1, 1);
+		let frthPoint = new Point("D", 1, -1);
+		let fifthPoint = new Point("E", 5, -5);
+		let sixthPoint = new Point("F", 10, 10);
+		let Points = new PointHandler();
+		Points.CREATE(frstPoint);
+		Points.CREATE(scndPoint);
+		Points.CREATE(thrdPoint);
+		Points.CREATE(frthPoint);
+		Points.CREATE(fifthPoint);
+		Points.CREATE(sixthPoint);
+		Points.READ("A");
+		Points.READ("B");
+		Points.READ("C");
+		Points.READ("D");
+		Points.READ("E");
+		Points.READ("F");
+		console.log("\n");
+		Points.UPDATE("B", -2, -2);
+		Points.READ("B");
+		console.log("\n");
+		Points.DELETE("F");
+		console.log(Points.Points);
+		console.log("\n");
+		Points.findMaxDistance();
+		console.log("\n");
+		Points.findPointsByNewPoint(0, 0, 4);
+		console.log("\n");
+		Points.findPointsAboutGivenAxis(0);
+		Points.findPointsAboutGivenAxis(1);
+		console.log("\n");
+		let firstVertex = new Point("", -4, 4);
+		let secondVertex = new Point("", 4, 4);
+		let thirdVertex = new Point("", 4, -4);
+		let fourthVertex = new Point("", -4, -4);
+		let curRect = new Rectangle(firstVertex, secondVertex, thirdVertex, fourthVertex);
+		Points.findPointsInrectangle(curRect);
+	\end{lstlisting}
+	\begin{lstlisting}[label=Task1.3,caption=Файл Point.js]
+		module.exports = class Point {
+			constructor(name, x, y) {
+				this.name = name;
+				this.x = x;
+				this.y = y;
+			}
+		}
+	\end{lstlisting}
+	\begin{lstlisting}[label=Task1.3,caption=Файл PointHandler.js]
+		const Point = require("./Point");
+		module.exports = class PointHandler {
+			constructor () {
+				this.Points = [];
+				this.length = this.Points.length;
+			}
+			
+			checkData(curPoint) {
+				for (let i = 0; i < this.length; i++) {
+					if (curPoint.name === this.Points[i].name) {
+						return 0;
+					}
+				}
+				return 1;
+			}
+			getPointByName(name) {
+				let index = -1;
+				for (let i = 0; i < this.length; i++) {
+					if (this.Points[i].name === name) {
+						index = i;
+						break;    
+					}
+				}
+				return index;
+			}
+			CREATE(curPoint) {
+				if (this.checkData(curPoint)) {
+					this.Points.push(curPoint);
+					this.length++;
+				}
+				else {
+					console.log("This point already exists.");
+				}
+			}
+			READ(name) {
+				let index = this.getPointByName(name);
+				if (index === -1) {
+					console.log("This point already exists.");
+				}
+				else {
+					console.log("Point: " + this.Points[index].name + ", x: " + this.Points[index].x + ", y: " + this.Points[index].y + ".");
+				}
+			}
+			UPDATE(name, x, y) {
+				let index = this.getPointByName(name);
+				if (index === -1) {
+					console.log("This point already exists.");
+				}
+				else {
+					this.Points[index].x = x;
+					this.Points[index].y = y; 
+				}
+			}
+			DELETE(name) {
+				let index = this.getPointByName(name);
+				if (index === -1) {
+					console.log("This point already exists.");
+				}
+				else {
+					this.Points.splice(index, 1);
+					this.length--;
+				}
+			}
+			getDistance(frstPoint, scndPoint) {
+				return Math.sqrt(Math.pow(scndPoint.x - frstPoint.x, 2) + Math.pow(scndPoint.y - frstPoint.y, 2))
+			}
+			findMaxDistance() {
+				let frstPoint = this.Points[0],
+				scndPoint = this.Points[1];
+				let maxDistance = this.getDistance(frstPoint, scndPoint);
+				for (let i = 0; i < this.length - 1; i++) {
+					for (let j = i + 1; j < this.length; j++) {
+						let curDistance = this.getDistance(this.Points[i], this.Points[j]) 
+						if (curDistance > maxDistance) {
+							maxDistance = curDistance;
+							frstPoint = this.Points[i];
+							scndPoint = this.Points[j];
+						}
+					}
+				}
+				console.log("Maximum distance = " + maxDistance + " between points:")
+				this.READ(frstPoint.name);
+				this.READ(scndPoint.name);
+			}
+			findPointsByNewPoint(x, y, constant) {
+				for (let i = 0; i < this.length; i++) {
+					if (this.getDistance(new Point("CheckDistance", x, y), this.Points[i]) <= constant) {
+						this.READ(this.Points[i].name);
+					}
+				}
+			}
+			// 0 - x, 1 - y
+			findAboutX() {
+				console.log("Above Y:");
+				for (let i = 0; i < this.length; i++) {
+					if (this.Points[i].y > 0) {
+						this.READ(this.Points[i].name);
+					}
+				}
+				console.log("Below Y:");
+				for (let i = 0; i < this.length; i++) {
+					if (this.Points[i].y < 0) {
+						this.READ(this.Points[i].name);
+					}
+				}
+			}
+			findAboutY() {
+				console.log("To the right X:");
+				for (let i = 0; i < this.length; i++) {
+					if (this.Points[i].x > 0) {
+						this.READ(this.Points[i].name);
+					}
+				}
+				console.log("To the left X:");
+				for (let i = 0; i < this.length; i++) {
+					if (this.Points[i].x < 0) {
+						this.READ(this.Points[i].name);
+					}
+				}
+			}
+			findPointsAboutGivenAxis(axis) {
+				if (!axis) {
+					this.findAboutX();
+				}
+				else {
+					this.findAboutY();
+				}
+			}	
+			findMaxCoords(curRect) {
+				let maxX = curRect.curRectangle[0].x, 
+				maxY = curRect.curRectangle[0].y;
+				for (let i = 0; i < 4; i++) {
+					if (maxX < curRect.curRectangle[i].x) {
+						maxX = curRect.curRectangle[i].x;
+					}
+					if (maxY < curRect.curRectangle[i].y) {
+						maxY = curRect.curRectangle[i].y;
+					}
+				}
+				return new Point("", maxX, maxY);
+			}
+			findMinCoords(curRect) {
+				let minX = curRect.curRectangle[0].x, 
+				minY = curRect.curRectangle[0].y;
+				for (let i = 0; i < 4; i++) {
+					if (minX > curRect.curRectangle[i].x) {
+						minX = curRect.curRectangle[i].x;
+					}
+					if (minY > curRect.curRectangle[i].y) {
+						minY = curRect.curRectangle[i].y;
+					}
+				}
+				return new Point("", minX, minY);
+			}
+			IsInRect(curRect, curPoint) {
+				let maxPoint = this.findMaxCoords(curRect);
+				let minPoint = this.findMinCoords(curRect);
+				if (curPoint.x < maxPoint.x && curPoint.x > minPoint.x && 
+				curPoint.y < maxPoint.y && curPoint.y > minPoint.y) {
+					return 1;
+				}
+				return 0;
+			}
+			findPointsInrectangle(curRect) {
+				for (let i = 0; i < this.length; i++) {
+					if (this.IsInRect(curRect, this.Points[i])) {
+						this.READ(this.Points[i].name);
+					}
+				}
+			}
+		}
+	\end{lstlisting}
+	\begin{lstlisting}[label=Task1.3,caption=Файл Rectangle.js]
+		const Point = require("./Point")
+		module.exports = class Rectangle {
+			constructor(firstPoint, secondPoint, thirdPoint, fourthPoint) {
+				this.curRectangle = [];
+				this.curRectangle.push(firstPoint);
+				this.curRectangle.push(secondPoint);
+				this.curRectangle.push(thirdPoint);
+				this.curRectangle.push(fourthPoint);
+			}
+		}
+	\end{lstlisting}
+
+	\chapter{Task 2}
+	\section{Задание 1}
+	\noindent Создать класс Точка.\par
+	\noindent Добавить классу точка Точка метод инициализации полей и метод вывода полей на экран\par
+	\noindent Создать класс Отрезок.\par
+	\noindent У класса Отрезок должны быть поля, являющиеся экземплярами класса Точка.\par
+	\noindent Добавить классу Отрезок метод инициализации полей, метод вывода информации о полях на экран, а так же метод получения длины отрезка.\par
+	\noindent\textbf{Решение задания 1}
+	\begin{lstlisting}[label=Task2.1,caption=Файл index.js]
+		"use strict";
+		const Point = require("./Point");
+		const Section = require("./Section");
+		let checkSection = new Section();
+		checkSection.init(0, 0, 4, 0);
+		checkSection.printSection();
+		let length = checkSection.findLength();
+		console.log(length);
+	\end{lstlisting}
+	\begin{lstlisting}[label=Task2.1,caption=Файл Point.js]
+		"use strict";
+		module.exports = class Point {
+			constructor() {
+				this.x = 0;
+				this.y = 0;
+			}
+			
+			init(x, y) {
+				this.x = x;
+				this.y = y;
+			}
+			
+			printPoint() {
+				console.log("Point: " + this.x + ";" + this.y);
+			}
+		}
+	\end{lstlisting}
+	\begin{lstlisting}[label=Task2.1,caption=Файл Section.js]
+		"use strict";
+		const Point = require("./Point");
+		module.exports = class Section {
+			constructor() {
+				this.firstPoint = new Point();
+				this.secondPoint = new Point();
+			}
+			
+			init(x1, y1, x2, y2) {
+				this.firstPoint.init(x1, y1);
+				this.secondPoint.init(x2, y2);
+			}
+			
+			printSection() {
+				console.log("Section: ");
+				this.firstPoint.printPoint();
+				this.secondPoint.printPoint();
+			}
+			
+			findLength() {
+				return Math.sqrt(Math.pow(this.secondPoint.x - this.firstPoint.x , 2) + Math.pow(this.secondPoint.y - this.firstPoint.y , 2));
+			}
+		}
+	\end{lstlisting}
+	
+	\newpage
+	\section{Задание 2}
+	\noindent Создать класс Треугольник.\par
+	\noindent Класс Треугольник должен иметь поля, хранящие длины сторон треугольника.\par
+	\noindent Реализовать следующие методы:\par
+	\begin{itemize}
+		\item Метод инициализации полей
+		\item Метод проверки возможности существования треугольника с такими сторонами
+		\item Метод получения периметра треугольника
+		\item Метод получения площади треугольника
+		\item Метод для проверки факта: является ли треугольник прямоугольным
+	\end{itemize}
+	\noindent\textbf{Решение задания 2}
+	\begin{lstlisting}[label=Task2.2,caption=Файл index.js]
+		"use strict";
+		const Triangle = require("./Tiangle");
+		let checkTriangle = new Triangle();
+		checkTriangle.init(5, 5, 6);
+		console.log(checkTriangle.isExist());
+		console.log(checkTriangle.getPerimeter());
+		console.log(checkTriangle.getArea());
+		console.log(checkTriangle.isRectangular());
+		console.log("\n");
+		let checkNewTriangle = new Triangle();
+		checkNewTriangle.init(1, 1, 4);
+		console.log(checkNewTriangle.isExist());
+		console.log("\n");
+		checkNewTriangle.init(3, 4, 5);
+		console.log(checkNewTriangle.isExist());
+		console.log(checkNewTriangle.isRectangular());
+	\end{lstlisting}
+	\begin{lstlisting}[label=Task2.2,caption=Файл Triangle.js]
+		"use strict";
+		
+		module.exports = class Triangle {
+			constructor() {
+				this.lenA = 0;
+				this.lenB = 0;
+				this.lenC = 0;
+			}
+			
+			init(len1, len2, len3) {
+				this.lenA = len1;
+				this.lenB = len2;
+				this.lenC = len3;
+			}
+			
+			isExist() {
+				if (this.lenA + this.lenB > this.lenC && 
+				this.lenA + this.lenC > this.lenB &&
+				this.lenB + this.lenC > this.lenA) {
+					return 1;
+				}
+				return 0;
+			}
+			
+			getPerimeter() {
+				if (this.isExist()) {
+					return this.lenA + this.lenB + this.lenC;
+				}
+				else {
+					console.log("There is no triangle.");
+					return -1;
+				}
+			}
+			
+			getArea() {
+				if (this.isExist()) {
+					let perimeter = this.getPerimeter();
+					return Math.sqrt(perimeter * (perimeter - this.lenA) * (perimeter - this.lenB) * (perimeter - this.lenC));
+				}
+				else {
+					console.log("There is no triangle.");
+					return -1;
+				}
+			}
+			
+			checkSide(firstLen, secondLen, thirdLen) {
+				if (Math.pow(firstLen, 2) + Math.pow(secondLen, 2) === Math.pow(thirdLen, 2)) {
+					return 1;
+				}
+				return 0;
+			}
+			
+			isRectangular() {
+				if (this.isExist()) {
+					if (this.checkSide(this.lenA, this.lenB, this.lenC) || this.checkSide(this.lenA, this.lenC, this.lenB) || this.checkSide(this.lenB, this.lenC, this.lenA)) {
+						return 1;
+					}
+					else {
+						return 0;
+					}
+				}
+				else {
+					console.log("There is no triangle.");
+					return -1;
+				}
+			}
+		}
+	\end{lstlisting}
+	
+	\newpage
+	\section{Задание 3}
+	\noindent Реализовать программу, в которой происходят следующие действия:\par
+	\noindent Происходит вывод целых чисел от 1 до 10 с задержками в 2 секунды.\par
+	\noindent После этого происходит вывод от 11 до 20 с задержками в 1 секунду.\par
+	\noindent Потом опять происходит вывод чисел от 1 до 10 с задержками в 2 секунды.\par
+	\noindent После этого происходит вывод от 11 до 20 с задержками в 1 секунду.\par
+	\noindent Это должно происходить циклически.\par
+	\noindent\textbf{Решение задания 2}	
+	\begin{lstlisting}[label=Task2.3,caption=Файл index.js]
+		"use strict";
+		
+		function checkInterval(startNumber, endNumber, intervalTime, i) {
+			let interval = setInterval(() => {
+				console.log(startNumber);
+				startNumber++;
+				if (startNumber == endNumber + 1) {
+					clearInterval(interval);
+					i++;
+					let start = i % 2 * 10 + 1;
+					let end = start + 9;
+					let intTime = 1000;
+					if (i % 2 == 0) {
+						intTime = 2000;
+					}
+					checkInterval(start, end, intTime, i);
+				}
+			}, intervalTime);
+		}
+
+		checkInterval(1, 10, 2000, 0);
+
+	\end{lstlisting}
+	
+	\restoregeometry
+	\newpage
+	\chapter*{Заключение}
+	\addcontentsline{toc}{chapter}{Заключение}
+	В ходе выполнения данной лабораторной работой я познакомился с языком программирования JavaScript и изучил основы ООП.
+\end{document}
