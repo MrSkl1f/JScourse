@@ -1,0 +1,44 @@
+body {
+    padding: 30px;
+    background: aquamarine;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+button {
+    padding: 6px;
+    background: blueviolet;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    width: 300px;
+    height: 48px;
+    font-size: 30px;
+}
+
+span {
+    color: blueviolet;
+    font-size: 30px;
+}
+
+h1 {
+    color: blueviolet;
+    font-size: 30px;
+}
+
+input[type="text"] {
+    border: 1px solid #cccccc;
+    border-radius: 4px; 
+    -moz-border-radius: 4px; 
+    background: #ffffff !important;
+    outline: none; 
+    height: 48px; 
+    width: 300px; 
+    color: #000000; 
+    font-size: 30px;
+    font-family: Tahoma;
+}
+
+p {
+    font-size: 30px;
+    color: blueviolet;
+}

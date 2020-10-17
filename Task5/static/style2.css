@@ -1,0 +1,44 @@
+body {
+    padding: 30px;
+    background: darkgray;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+button {
+    padding: 6px;
+    background: purple;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    width: 500px;
+    height: 72px;
+    font-size: 48px;
+}
+
+span {
+    color: purple;
+    font-size: 48px;
+}
+
+h1 {
+    color: purple;
+    font-size: 48px;
+}
+
+input[type="text"] {
+    border: 1px solid #cccccc;
+    border-radius: 4px; 
+    -moz-border-radius: 4px; 
+    background: gray !important;
+    outline: none; 
+    width: 500px;
+    height: 72px;
+    color: #000000; 
+    font-size: 48px;
+    font-family: Tahoma;
+}
+
+p {
+    font-size: 48px;
+    color: purple;
+}
