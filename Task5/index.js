@@ -31,7 +31,7 @@ function loadBody(request, callback) {
         callback(body);
     });
 }
-[{"mail" : "asf", "name" : "asf", "number" : "1241241"}]
+
 function checkUnique(a, b, c) {
     let info = JSON.parse(fs.readFileSync("file.txt", "utf-8"));
     let check = true;
@@ -65,4 +65,25 @@ app.post("/save/info", function(request, response) {
             }));
         }
     });
+});
+
+function getInfo(mail) {
+    let info = JSON.parse(fs.readFileSync("file.txt", "utf-8"));
+    let result = null;
+    for (let i = 0; i < info.length; i++) {
+        let obj = info[i];
+        if (obj["mail"] == mail) {
+            result = obj;
+            break;
+        }
+    }
+    return result;
+}
+
+app.get("/getInfo", function(request, response) {
+    const mail = request.query.mail;
+    let res = getInfo(mail);
+    response.end(JSON.stringify({
+        result: res
+    }));
 });

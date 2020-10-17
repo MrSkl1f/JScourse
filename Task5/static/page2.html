@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Task 5</title>
+</head>
+<body>
+<h1>Тестируем GET запросы</h1>
+    <p>Введите mail</p>
+    <input id="mail-info" type="text" spellcheck="false" autocomplete="off">
+    <br>
+    <br>
+    <span id="result-label">Результат: </span>
+    <br>
+    <br>
+    <button onclick="makeAction()">Отправить</button>
+    <h1 id="result-label"></h1>
+
+<script>
+    "use strict";
+    function ajaxGet(urlString, callback) {
+        let r = new XMLHttpRequest();
+        r.open("GET", urlString, true);
+        r.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+        r.send(null);
+        r.onload = function() {
+            callback(r.response);
+        };
+    };
+
+    function makeAction() {
+        const mailInfo = (document.getElementById("mail-info")).value;
+        const url = `/getInfo?mail=${mailInfo}`;
+        ajaxGet(url, function(stringAnswer) {
+            const objectAnswer = JSON.parse(stringAnswer);
+            const result = objectAnswer.result;
+            if (result == null) {
+                document.getElementById('result-label').innerHTML = "Результат: " + "Nothing was found";
+            }
+            else {
+                document.getElementById('result-label').innerHTML = "Результат:" + " mail:-" + result["mail"] + "; name-" + result["name"] + "; number-" + result["number"] + ".";
+            }
+        });
+    }
+</script>
+</body>
+</html>
