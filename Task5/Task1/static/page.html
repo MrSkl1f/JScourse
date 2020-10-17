@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Task 5.1</title>
+</head>
+<body>
+<h1>Тестируем Post запросы</h1>
+    <p>Введите mail</p>
+    <input id="main-info" type="text" spellcheck="false" autocomplete="off">
+    <br>
+    <p>Введите фамилию</p>
+    <input id="name-info" type="text" spellcheck="false" autocomplete="off">
+    <br>
+    <p>Введите номер телефона</p>
+    <input id="number-info" type="text" spellcheck="false" autocomplete="off">
+    <br>
+    <br>
+    <span id="result-label">Результат: </span>
+    <br>
+    <br>
+    <button onclick="makeAction()">Отправить</button>
+    
+
+<script>
+    "use strict";
+    function ajaxPost(urlString, bodyString, callback) {
+        let r = new XMLHttpRequest();
+        r.open("POST", urlString, true);
+        r.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        r.send(bodyString);
+        r.onload = function() {
+            callback(r.response);
+        }
+    }
+
+    function makeAction() {
+        const mainInfo = (document.getElementById("main-info")).value;
+        const nameInfo = (document.getElementById("name-info")).value;
+        const numberInfo = (document.getElementById("number-info")).value;
+
+        ajaxPost("/save/info", JSON.stringify({
+            mainInfo, nameInfo, numberInfo
+        }), function(answerString) {
+            const answerObject = JSON.parse(answerString);
+            const result = answerObject.result;
+            document.getElementById('result-label').innerHTML = "Результат: " + result;
+        });
+    }
+</script>
+
+</body>
+</html>
