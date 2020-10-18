@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Игры</title>
+</head>
+<body>
+
+<h1>Компьютерные игры</h1>
+
+{{#each games}}
+    <div style="background: gray; margin-bottom: 15px; padding: 8px;">
+        Игра: {{this.name}} 
+        <br>
+        Описание: {{this.description}} 
+        <br>
+        Возрастные ограничения: {{this.restrictions}}
+    </div>
+{{/each}}
+    
+</body>
+</html>
