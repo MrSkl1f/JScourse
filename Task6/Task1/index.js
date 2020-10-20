@@ -1,13 +1,13 @@
 "use strict";
 
 let games = [
-    {name : "SKYRIM", description : "приключенческая ролевая игра", restrictions : 15},
-    {name : "Grand Theft Auto 5", description : "Игроку предоставлена полная свобода действий - он может путешествовать по городу и его окрестностям, грабить прохожих, воровать машины - или же жить простой жизнью обычного человека.", restrictions : 16},
-    {name : "MineCraft", description : "инди-игра в жанре песочницы с элементами выживания и открытым миром. ", restrictions : 10},
-    {name : "Assassin's Creed", description : "приключенческий экшен от третьего лица. ", restrictions : 14},
-    {name : "Mass Effect", description : "мультиплатформенный сиквел, вторая часть космической ролевой оперы. ", restrictions : 11},
-    {name : "Mafia", description : "риключенческий экшен, который переносит игроков в преступный мир Америки 40-50-х годов прошлого века.", restrictions : 12},
-    {name : "Far Cry", description : "приключенческий шутер от первого лица с открытым миром и элементами RPG", restrictions : 13},
+    {name : "SKYRIM", description : "приключенческая ролевая игра", restrictions : 16},
+    {name : "Grand Theft Auto 5", description : "Игроку предоставлена полная свобода действий - он может путешествовать по городу и его окрестностям, грабить прохожих, воровать машины - или же жить простой жизнью обычного человека.", restrictions : 18},
+    {name : "MineCraft", description : "инди-игра в жанре песочницы с элементами выживания и открытым миром. ", restrictions : 0},
+    {name : "Assassin's Creed", description : "приключенческий экшен от третьего лица. ", restrictions : 18},
+    {name : "Mass Effect", description : "мультиплатформенный сиквел, вторая часть космической ролевой оперы. ", restrictions : 16},
+    {name : "Mafia", description : "риключенческий экшен, который переносит игроков в преступный мир Америки 40-50-х годов прошлого века.", restrictions : 18},
+    {name : "Far Cry", description : "приключенческий шутер от первого лица с открытым миром и элементами RPG", restrictions : 18},
 ];
 
 // импорт библиотеки
