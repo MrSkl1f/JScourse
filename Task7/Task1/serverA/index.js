@@ -50,7 +50,6 @@ function insertRecord(carName, carCost) {
 app.post("/insert/record", function(request, response) {
     loadBody(request, function(body) {
         const obj = JSON.parse(body);
-        console.log(obj);
         const carName = obj.carName;
         const carCost = obj.carCost;
         let res = insertRecord(carName, carCost);
@@ -74,6 +73,7 @@ function selectRecord(carName) {
             return obj;
         }
     }
+    
     return null;
 }
 
@@ -82,6 +82,7 @@ app.post("/select/record", function(request, response) {
     loadBody(request, function(body) {
         const obj = JSON.parse(body);
         const carName = obj.carName;
+        console.log(carName);
         let res = selectRecord(carName);
         response.end(JSON.stringify({
             answer: res

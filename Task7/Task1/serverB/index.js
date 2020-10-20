@@ -40,15 +40,15 @@ function insertRecord(warehouse, cars) {
         }
     }
     if (check) {
-        info.push({"warehouse" : carName, "cars" : cars});
-        fs.writeFileSync("cars.txt", JSON.stringify(info));
+        const obj = {"warehouse" : warehouse, "cars" : cars}
+        info.push(obj);
+        fs.writeFileSync("carWarehouse.txt", JSON.stringify(info));
     }
     return check;
 }
 
 // {wareHouseName, arrOfCars}
 app.post("/insert/record", function(request, response) {
-    console.log("yes");
     loadBody(request, function(body) {
         const obj = JSON.parse(body);
         const warehouse = obj.wareHouseName;

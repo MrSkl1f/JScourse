@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Task 5</title>
+    <link rel="stylesheet" href="/style2.css">
+</head>
+<body>
+<h1>Запросы на сервер A</h1>
+<h2>Создание нового типа машин</h2>
+<p>Введите название машины</p>
+<input id="car-name-insert" type="text" spellcheck="false" autocomplete="off">
+<br>
+<p>Введите цену машины</p>
+<input id="car-cost-insert" type="text" spellcheck="false" autocomplete="off">
+<br>
+<br>
+<button onclick="createCar()">Создать</button>
+<br>
+<h3 id="result-first">Результат:</h3>
+
+<h2>Получение информации о стоимости машины по её типу</h2>
+<p>Введите название машины</p>
+<input id="car-name-select" type="text" spellcheck="false" autocomplete="off">
+<br>
+<br>
+<button onclick="selectCar()">Получить</button>
+<br>
+<h3 id="result-second">Результат:</h3>
+
+<h2>Создание нового склада с находящимися в нём машинами</h2>
+<p>Введите название склада</p>
+<input id="warehouse-name-insert" type="text" spellcheck="false" autocomplete="off">
+<br>
+<p>Ввдеите массив машин (формат: машина, машина, машина:</p>
+<input id="warehouse-arr-insert" type="text" spellcheck="false" autocomplete="off">
+<br>
+<br>
+<button onclick="createWarehouse()">Создать</button>
+<br>
+<h3 id="result-third">Результат:</h3>
+
+<h2>Получение информации о машинах на складе по названию склада</h2>
+<p>Введите название склада</p>
+<input id="warehouse-name-select" type="text" spellcheck="false" autocomplete="off">
+<br>
+<br>
+<button onclick="selectWarehouse()">Получить</button>
+<br>
+<h3 id="result-fourth">Результат:</h3>
+
+<script>
+    "use strict";
+    function ajaxGet(urlString, callback) {
+        let r = new XMLHttpRequest();
+        r.open("GET", urlString, true);
+        r.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+        r.send(null);
+        r.onload = function() {
+            callback(r.response);
+        };
+    };
+
+    function ajaxPost(urlString, bodyString, callback) {
+        let r = new XMLHttpRequest();
+        r.open("POST", urlString, true);
+        r.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        r.send(bodyString);
+        r.onload = function() {
+            callback(r.response);
+        }
+    }
+
+    function createCar() {
+        const name = (document.getElementById("car-name-insert")).value;
+        const cost = (document.getElementById("car-cost-insert")).value;
+        const url = `/insertCar?car=${name}&cost=${cost}`;
+        ajaxGet(url, function(stringAnswer) {
+            const objectAnswer = JSON.parse(stringAnswer);
+            const result = objectAnswer.result;
+            console.log(result);
+            document.getElementById('result-first').innerHTML = "Результат:" + result;
+        });
+    }
+
+    function selectCar() {
+        const name = (document.getElementById("car-name-select")).value;
+        const url = `/selectCar?car=${name}`;
+        ajaxGet(url, function(stringAnswer) {
+            const objectAnswer = JSON.parse(stringAnswer);
+            const result = objectAnswer.result;
+            console.log(result);
+            if (result == "Didn't find") {
+                document.getElementById('result-second').innerHTML = "Результат:" + result;
+            } else {
+                document.getElementById('result-second').innerHTML = "Результат:" + " name - " + result["name"] + ", cost - " + result["cost"];
+            }
+        });
+    }
+
+    function createWarehouse() {
+        const warehouse = (document.getElementById("warehouse-name-insert")).value;
+        let arr = (document.getElementById("warehouse-arr-insert")).value;
+        arr = arr.split(",");
+        console.log(arr);
+        ajaxPost("/insertWarehouse", JSON.stringify({
+            warehouse, arr
+        }), function(answerString) {
+            const answerObject = JSON.parse(answerString);
+            const result = answerObject.result;
+            document.getElementById('result-third').innerHTML = "Результат:" + result;
+        });
+    }
+
+    function selectWarehouse() {
+        const warehouse = (document.getElementById("warehouse-name-select")).value;
+        
+        ajaxPost("/selectWarehouse", JSON.stringify({
+            warehouse
+        }), function(answerString) {
+            const answerObject = JSON.parse(answerString);
+            const result = answerObject.result;
+            document.getElementById('result-fourth').innerHTML = result;
+        });
+    }
+
+</script>
+</body>
+</html>

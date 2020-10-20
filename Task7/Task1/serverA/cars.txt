@@ -1,1 +1,1 @@
-[{"name":"Skoda Rapid","cost":819000},{"name":"Lada Vesta","cost":667900},{"name":"Volkswagen Polo","cost":716900},{"name":"Lada","cost":"48"}]
+[{"name":"Skoda Rapid","cost":819000},{"name":"Lada Vesta","cost":667900},{"name":"Volkswagen Polo","cost":716900},{"name":"Lexus RX 350","cost":"4400000"}]
