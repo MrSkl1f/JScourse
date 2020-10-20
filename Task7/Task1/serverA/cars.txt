@@ -1,1 +1,1 @@
-[{name:"Skoda Rapid",cost:819000},{name:"Lada Vesta",cost:667900},{name:"Volkswagen Polo",cost:716900}]
+[{"name":"Skoda Rapid","cost":819000},{"name":"Lada Vesta","cost":667900},{"name":"Volkswagen Polo","cost":716900},{"name":"Lada","cost":"48"}]

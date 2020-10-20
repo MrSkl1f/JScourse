@@ -1,1 +1,1 @@
-[{warehouse:"Moscow777",cars:["Skoda Rapid","Lada Vesta","Volkswagen Polo"]}]
+[{"warehouse":"Moscow777","cars":["Skoda Rapid","Lada Vesta","Volkswagen Polo"]}]

@@ -34,13 +34,13 @@ function insertRecord(carName, carCost) {
     let check = true;
     for (let i = 0; i < info.length; i++) {
         const obj = info[i];
-        if (obj.name == carName) {
+        if (obj["name"] == carName) {
             check = false;
             break;
         }
     }
     if (check) {
-        info.push({name : carName, cost : carCost});
+        info.push({"name" : carName, "cost" : carCost});
         fs.writeFileSync("cars.txt", JSON.stringify(info));
     }
     return check;
@@ -48,9 +48,9 @@ function insertRecord(carName, carCost) {
 
 // {carName, carCost}
 app.post("/insert/record", function(request, response) {
-    console.log("yes");
     loadBody(request, function(body) {
         const obj = JSON.parse(body);
+        console.log(obj);
         const carName = obj.carName;
         const carCost = obj.carCost;
         let res = insertRecord(carName, carCost);
@@ -70,7 +70,7 @@ function selectRecord(carName) {
     let info = JSON.parse(fs.readFileSync("cars.txt", "utf-8"));
     for (let i = 0; i < info.length; i++) {
         const obj = info[i];
-        if (obj.name == carName) {
+        if (obj["name"] == carName) {
             return obj;
         }
     }

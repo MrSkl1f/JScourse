@@ -34,13 +34,13 @@ function insertRecord(warehouse, cars) {
     let check = true;
     for (let i = 0; i < info.length; i++) {
         const obj = info[i];
-        if (obj.warehouse == warehouse) {
+        if (obj["warehouse"] == warehouse) {
             check = false;
             break;
         }
     }
     if (check) {
-        info.push({warehouse : carName, cars : cars});
+        info.push({"warehouse" : carName, "cars" : cars});
         fs.writeFileSync("cars.txt", JSON.stringify(info));
     }
     return check;
@@ -70,7 +70,7 @@ function selectRecord(warehouse) {
     let info = JSON.parse(fs.readFileSync("carWarehouse.txt", "utf-8"));
     for (let i = 0; i < info.length; i++) {
         const obj = info[i];
-        if (obj.warehouse == warehouse) {
+        if (obj["warehouse"] == warehouse) {
             return obj;
         }
     }
