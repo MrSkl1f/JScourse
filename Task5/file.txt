@@ -1,1 +1,1 @@
-[{"mail":"alex@mail.ru","name":"Alexander","number":"8800553535"},{"mail":"asf@mail.ru","name":"Asf","number":"8998032222"}
+[{"mail":"alex@mail.ru","name":"Alexander","number":"8800553535"},{"mail":"sklif","name":"Sklif","number":"18491"}]

@@ -51,4 +51,4 @@ app.get("/page/getGames", function(request, response) {
     };
     response.render("pageGetGames.hbs", infoObject);
 });
-//http://localhost:5000/page/getGames?age=${15}
+//http://localhost:5000/page/getGames?age=15

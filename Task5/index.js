@@ -33,10 +33,13 @@ function loadBody(request, callback) {
 }
 
 function checkUnique(a, b, c) {
+    console.log("YES");
     let info = JSON.parse(fs.readFileSync("file.txt", "utf-8"));
     let check = true;
+    
     for (let i = 0; i < info.length && check; i++) {
         let obj = info[i];
+        
         if (obj["mail"] == a || obj["number"] == c) {
             check = false;
         }
@@ -50,7 +53,10 @@ app.post("/save/info", function(request, response) {
         const mail = obj["mainInfo"];
         const name = obj["nameInfo"];
         const number = obj["numberInfo"];
-        if (checkUnique(mail, name, number)) {
+        
+        let res = checkUnique(mail, name, number);
+        
+        if (res) {
             let info = JSON.parse(fs.readFileSync("file.txt", "utf-8"));
             info.push({"mail" : mail, "name" : name, "number" : number});
             const obj = JSON.stringify(info);
