@@ -1,1 +1,1 @@
-[{"warehouse":"Moscow777","cars":["Lada Vesta","Volkswagen Polo"]},{"warehouse":"TogliattiOneLove","cars":["Skoda Rapid","Lada Vesta"]},{"warehouse":"Lexus Kolomenskoe","cars":["Lexus RX 350"]}]
+[{"warehouse":"Moscow777","cars":["Lada Vesta","Volkswagen Polo"]},{"warehouse":"TogliattiOneLove","cars":["Skoda Rapid","Lada Vesta"]},{"warehouse":"Lexus Kolomenskoe","cars":["Lexus RX 350"]},{"warehouse":"Lada Togliatti","cars":["Lada Granta"]}]
