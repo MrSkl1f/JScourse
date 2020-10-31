@@ -3,10 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Task 5</title>
-    <link rel="stylesheet" href="/style2.css">
+    <link rel="stylesheet" href="/lab2.css">
 </head>
 <body>
 <h1>Запросы на сервер A</h1>
+<h2>Получение информации о стоимости машины по её типу</h2>
+<p>Введите название машины</p>
+<input id="car-name-select" type="text" spellcheck="false" autocomplete="off">
+<br>
+<br>
+<button onclick="selectCar()">Получить</button>
+<br>
+<h3 id="result-second">Результат:</h3>
+
 <h2>Создание нового типа машин</h2>
 <p>Введите название машины</p>
 <input id="car-name-insert" type="text" spellcheck="false" autocomplete="off">
@@ -18,15 +27,6 @@
 <button onclick="createCar()">Создать</button>
 <br>
 <h3 id="result-first">Результат:</h3>
-
-<h2>Получение информации о стоимости машины по её типу</h2>
-<p>Введите название машины</p>
-<input id="car-name-select" type="text" spellcheck="false" autocomplete="off">
-<br>
-<br>
-<button onclick="selectCar()">Получить</button>
-<br>
-<h3 id="result-second">Результат:</h3>
 
 <h2>Создание нового склада с находящимися в нём машинами</h2>
 <p>Введите название склада</p>

@@ -7,3 +7,4 @@ a :- write("Number 1: "), nl,
      write("Number 2: "), nl,
      read(B), nl,
      out(A, B, 1, 0, 1).
+     
